@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Connector Quest — Bahar Academy</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#eef2f8;--card:#fff;--tx:#18283a;--mu:#5f6f80;--pr:#2b4c7e;--ac:#0f9b8e;--ok:#1f8a54;--okb:#e2f6ea;--no:#c53030;--nob:#fdeaea;--bd:#d6dee8;--sh:0 4px 14px rgba(30,60,100,.1);--hero:linear-gradient(135deg,#2b4c7e,#0f9b8e)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d141c;--card:#17222e;--tx:#e8eef5;--mu:#9fb0c1;--pr:#8ab8ea;--ac:#3cc1b0;--ok:#6fd49a;--okb:#133424;--no:#ff8f8f;--nob:#3a1c1c;--bd:#2b3a4a;--sh:none;--hero:linear-gradient(135deg,#1b3558,#0b6d65)}}
+:root[data-theme="dark"]{--bg:#0d141c;--card:#17222e;--tx:#e8eef5;--mu:#9fb0c1;--pr:#8ab8ea;--ac:#3cc1b0;--ok:#6fd49a;--okb:#133424;--no:#ff8f8f;--nob:#3a1c1c;--bd:#2b3a4a;--sh:none;--hero:linear-gradient(135deg,#1b3558,#0b6d65)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,"Segoe UI","Nirmala UI",Arial,sans-serif;line-height:1.55}
+.w{max-width:640px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--sh)}
+.hero{background:var(--hero);color:#fff;border-radius:18px;padding:20px;margin-bottom:12px}
+.hero h1{margin:2px 0 6px;font-size:30px}.hero p{margin:4px 0;opacity:.92}
+.xp{height:10px;background:rgba(255,255,255,.28);border-radius:8px;overflow:hidden;margin-top:10px}.xp i{display:block;height:100%;background:#ffd166;border-radius:8px}
+h2{margin:0 0 8px;font-size:20px}h3{margin:14px 0 8px;font-size:16px;color:var(--pr)}
+.mu{color:var(--mu);font-size:14px}button,select{font:inherit;color:var(--tx)}button{cursor:pointer}
+.lv{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:8px;box-shadow:var(--sh);transition:.15s}
+.lv:hover{transform:translateY(-2px);border-color:var(--ac)}.lv em{font-style:normal;font-size:26px}.lv b{color:var(--pr)}
+.pills{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+.pill{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;font-weight:700;font-size:15px}
+.bar{height:9px;background:var(--bd);border-radius:6px;overflow:hidden;margin-bottom:12px}.bar i{display:block;height:100%;background:var(--ac);transition:width .1s linear}
+.q{font-size:22px;font-weight:700;margin:6px 0 16px;line-height:1.4}
+.opt{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:11px 14px;margin-bottom:8px;font-size:17px;transition:.12s}
+.opt:hover:not(:disabled){border-color:var(--ac);transform:translateX(3px)}.opt b{background:var(--bd);border-radius:8px;min-width:26px;text-align:center;font-size:14px}
+.opt.ok{background:var(--okb);border-color:var(--ok);animation:pop .3s}.opt.no{background:var(--nob);border-color:var(--no);animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.04)}}@keyframes shk{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{border-radius:14px;padding:12px 14px;margin-top:6px}.fb.ok{background:var(--okb)}.fb.no{background:var(--nob)}.fb div{margin:3px 0}
+.bn{border-left:4px solid var(--ac);padding-left:10px;margin-top:8px}
+.go{display:block;width:100%;background:var(--pr);color:var(--card);border:0;border-radius:14px;padding:12px;font-weight:700;margin-top:10px}
+.sec{background:transparent;color:var(--pr);border:2px solid var(--pr)}
+.st{font-size:36px;letter-spacing:5px;text-align:center;color:#f2b01e}
+.tag{display:inline-block;background:var(--bd);border-radius:20px;padding:2px 10px;margin:3px 4px 0 0;font-size:14px}
+.ps{font-size:18px;line-height:2.1}.ps select{background:var(--card);border:2px solid var(--ac);border-radius:8px;padding:2px 4px;font-size:16px;margin:0 2px}
+.ps select.ok{border-color:var(--ok);background:var(--okb)}.ps select.no{border-color:var(--no);background:var(--nob)}
+.hide{display:none}
+</style></head><body><div class="w">
+<div id="home">
+ <div class="hero"><div style="opacity:.85;font-size:14px">BAHAR ACADEMY · Never stop learning</div><h1>🎯 Connector Quest</h1>
+ <p id="rank" style="font-weight:700"></p><div class="xp"><i id="xpb"></i></div><p id="xpt" style="font-size:13px"></p></div>
+ <h3>⚡ Quick Quiz</h3><div id="lvs"></div>
+ <h3>📖 Passage Practice</h3><div id="pss"></div>
+</div>
+<div id="game" class="hide">
+ <div class="pills"><span class="pill" id="h1"></span><span class="pill" id="h2"></span></div>
+ <div class="bar"><i id="tb"></i></div>
+ <div class="card"><div class="mu" id="qn"></div><div class="q" id="qt"></div><div id="ops"></div>
+ <button class="go sec" id="hint">💡 Hint (−3 পয়েন্ট)</button>
+ <div id="fb" class="fb hide"></div><button class="go hide" id="nx"></button></div>
+</div>
+<div id="pass" class="hide"></div>
+<div id="end" class="hide"></div>
+</div>
+<script>
+// [level, rule, question, answer, [wrong x3], explanation, Bangla meaning]
+const Q=[
+[1,'Addition: and','I like tea ___ coffee.','and',['but','so','because'],'দুটি জিনিস যোগ হচ্ছে → and।','আমি চা এবং কফি পছন্দ করি।'],
+[1,'Contrast: but','He is poor ___ honest.','but',['and','so','if'],'গরিব, কিন্তু সৎ — বিপরীত ভাব → but।','সে গরিব কিন্তু সৎ।'],
+[1,'Result: so','It was raining, ___ we stayed at home.','so',['but','because','although'],'বৃষ্টি (কারণ) → ঘরে থাকা (ফল) → so।','বৃষ্টি হচ্ছিল, তাই আমরা বাড়িতে ছিলাম।'],
+[1,'Cause: because','He was absent ___ he was ill.','because',['so','but','or'],'অসুস্থতা কারণ → because + S+V।','সে অনুপস্থিত ছিল কারণ সে অসুস্থ ছিল।'],
+[1,'Condition: if','___ you work hard, you will succeed.','If',['Unless','Although','While'],'পরিশ্রম করলে সফল — শর্ত → If।','তুমি কঠিন পরিশ্রম করলে সফল হবে।'],
+[1,'Relative: who','The boy ___ is standing there is my friend.','who',['which','where','whose'],'The boy ব্যক্তি → who।','ওখানে যে ছেলেটি দাঁড়িয়ে আছে সে আমার বন্ধু।'],
+[2,'Contrast: although','___ he was tired, he finished the work.','Although',['Because','So','Unless'],'ক্লান্ত, তবুও শেষ করল — বিপরীত → Although।','ক্লান্ত থাকা সত্ত্বেও সে কাজটি শেষ করল।'],
+[2,'because of','She could not go out ___ the heavy rain.','because of',['because','although','so that'],'পরে noun আছে → because of।','ভারী বৃষ্টির কারণে সে বাইরে যেতে পারল না।'],
+[2,'unless','You will fail ___ you study regularly.','unless',['if','although','so'],'unless = if not।','নিয়মিত না পড়লে তুমি ফেল করবে।'],
+[2,'Purpose: so that','He ran fast ___ he could catch the train.','so that',['because of','although','otherwise'],'উদ্দেশ্য → so that + could।','সে জোরে দৌড়াল যাতে ট্রেনটি ধরতে পারে।'],
+[2,'despite','___ his illness, he attended the class.','Despite',['Although','Because','Unless'],'পরে noun (his illness) → Despite।','অসুস্থতা সত্ত্বেও সে ক্লাসে উপস্থিত হলো।'],
+[2,'Relative: where','This is the house ___ I was born.','where',['who','which','whose'],'house স্থান → where।','এটি সেই বাড়ি যেখানে আমি জন্মেছি।'],
+[3,'however','She was angry; ___, she said nothing.','however',['therefore','moreover','because'],'রাগ, তবুও কিছু বলেনি — বিপরীত → however।','সে রাগান্বিত ছিল; তবুও সে কিছু বলল না।'],
+[3,'before / after','The train had left ___ we reached the station.','before',['after','while','unless'],'আগের কাজে had + V3 → before।','আমরা স্টেশনে পৌঁছানোর আগেই ট্রেনটি ছেড়ে গিয়েছিল।'],
+[3,'otherwise','Hurry up, ___ you will miss the bus.','otherwise',['because','although','so'],'না করলে মন্দ ফল → otherwise।','তাড়াতাড়ি করো, নইলে বাসটি মিস করবে।'],
+[3,'when / while','I was reading ___ my mother was cooking.','while',['because','but','unless'],'দুটি কাজ একই সময়ে চলছিল → while।','মা যখন রান্না করছিলেন তখন আমি পড়ছিলাম।'],
+[3,'Relative: whose','He is a man ___ word can be trusted.','whose',['who','which','where'],'মালিকানা (তার কথা) → whose।','সে এমন মানুষ যার কথা বিশ্বাস করা যায়।'],
+[3,'therefore','It was late; ___ we hurried to the station.','therefore',['however','otherwise','although'],'দেরি (কারণ) → ফল → therefore।','দেরি হয়ে গিয়েছিল; অতএব আমরা স্টেশনে ছুটলাম।'],
+[4,'although ≠ but','Which sentence is correct?','Although he is poor, he is honest.',['Although he is poor, but he is honest.','Although he is poor, so he is honest.','Though he is poor, but he is honest.'],'although থাকলে but বসে না।','সে গরিব হলেও সৎ।'],
+[4,'because of','Which sentence is correct?','He was absent because of his illness.',['He was absent because of he was ill.','He was absent despite of his illness.','He was absent because his illness.'],'because of + noun; because + S+V।','সে অসুস্থতার কারণে অনুপস্থিত ছিল।'],
+[4,'despite','Which sentence is correct?','Despite being poor, he is honest.',['Despite he is poor, he is honest.','Despite of being poor, he is honest.','Despite poor, he is honest.'],'despite + noun/gerund; of নেই।','গরিব হওয়া সত্ত্বেও সে সৎ।'],
+[4,'unless','Which sentence is correct?','Unless you hurry, you will miss the train.',['Unless you do not hurry, you will miss the train.','Unless you hurry, you will not miss the train.','Unless you hurry not, you will miss the train.'],'unless নিজেই “না”; পরে not বসে না।','তাড়াতাড়ি না করলে তুমি ট্রেন মিস করবে।'],
+[4,'so that','Which sentence is correct?','He works hard so that he can succeed.',['He works hard so that he succeed.','He works hard so that he can succeeds.','He works hard so he can to succeed.'],'so that + S + can/could/may/might + V।','সে কঠিন পরিশ্রম করে যাতে সফল হতে পারে।'],
+[4,'before / after','After he ___ his work, he went home.','had finished',['has finished','finishes','was finishing'],'আগের কাজে had + V3।','কাজ শেষ করার পর সে বাড়ি গেল।']
+];
+const WB=['and','but','so','because','although','unless','otherwise','when','while','who','which','where','whose','so that','before','if'];
+const PS=[
+{t:'🎓 A Poor but Hardworking Student',x:'Rahim wants to get GPA-5, {0} he studies six hours daily. {1} he is poor, he never misses a class. His father is a farmer {2} works in the field all day. Rahim must work hard, {3} he will not succeed.',a:[['so'],['although','though'],['who','that'],['otherwise']],
+ bn:'রহিম GPA-5 পেতে চায়, তাই সে প্রতিদিন ছয় ঘণ্টা পড়ে। সে গরিব হলেও কখনো ক্লাস মিস করে না। তার বাবা একজন কৃষক, যিনি সারাদিন মাঠে কাজ করেন। রহিমকে কঠিন পরিশ্রম করতে হবে, নইলে সে সফল হবে না।',
+ ex:['ইচ্ছা (কারণ) → পড়া (ফল): so','গরিব তবুও ক্লাস মিস করে না — বিপরীত: Although','His father ব্যক্তি: who','না করলে মন্দ ফল: otherwise']},
+{t:'🌳 Trees and Environment',x:'Trees are useful {0} they give us oxygen and shade. {1} many people need wood, cutting too many trees is harmful. A place {2} there are no trees may become a desert. We should plant trees {3} the environment can remain healthy.',a:[['because','as','since'],['although','though'],['where'],['so that']],
+ bn:'গাছ উপকারী কারণ তা আমাদের অক্সিজেন ও ছায়া দেয়। অনেকের কাঠ দরকার হলেও অতিরিক্ত গাছ কাটা ক্ষতিকর। যে স্থানে গাছ নেই তা মরুভূমি হয়ে যেতে পারে। আমাদের গাছ লাগানো উচিত যাতে পরিবেশ সুস্থ থাকে।',
+ ex:['উপকারী হওয়ার কারণ: because','কাঠ দরকার, তবু ক্ষতিকর — বিপরীত: Although','The place স্থান: where','উদ্দেশ্য: so that + can']},
+{t:'🤒 A Day of Illness',x:'Rina was ill, {0} she did not go to school. {1} she was in bed, her friend came to see her. The doctor said, “Take medicine regularly, {2} you will not recover.” {3} she took the medicine regularly, she got well soon.',a:[['so'],['while','when'],['otherwise'],['because','as','since']],
+ bn:'রিনা অসুস্থ ছিল, তাই সে স্কুলে যায়নি। সে বিছানায় থাকার সময় তার বন্ধু দেখা করতে এল। ডাক্তার বললেন, “নিয়মিত ওষুধ খাও, নইলে সুস্থ হবে না।” নিয়মিত ওষুধ খাওয়ায় সে শীঘ্রই সুস্থ হলো।',
+ ex:['অসুস্থ (কারণ) → না যাওয়া (ফল): so','একই সময়ের কাজ: While','না খেলে মন্দ ফল: otherwise','সুস্থ হওয়ার কারণ: Because']}
+];
+const RANKS=[[0,'🌱 Beginner'],[100,'📘 Learner'],[250,'🚀 Pro'],[500,'🏅 Expert'],[900,'👑 Connector Master']];
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e};
+const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const ls=(k,v)=>{try{if(v!==undefined)localStorage.setItem(k,v);return +localStorage.getItem(k)||0}catch(e){return 0}};
+const addXP=n=>ls('cqxp',ls('cqxp')+n);
+const NAMES=['🔥 Mixed Challenge','🟢 Level 1 — Easy','🟡 Level 2 — Medium','🟠 Level 3 — Board Standard','🔴 Level 4 — Correct Sentence'];
+let S,timer;
+const screen=n=>['home','game','pass','end'].forEach(s=>$(s).classList.toggle('hide',s!==n));
+function home(){
+ screen('home');const xp=ls('cqxp');let r=0;RANKS.forEach((x,i)=>{if(xp>=x[0])r=i});
+ const nx=RANKS[r+1];$('rank').textContent=RANKS[r][1]+' · XP '+xp;
+ $('xpb').style.width=(nx?(xp-RANKS[r][0])/(nx[0]-RANKS[r][0])*100:100)+'%';
+ $('xpt').textContent=nx?'পরের র‍্যাঙ্ক ('+nx[1]+') পর্যন্ত আরও '+(nx[0]-xp)+' XP':'সর্বোচ্চ র‍্যাঙ্ক! 🎉';
+ $('lvs').innerHTML='';$('pss').innerHTML='';
+ NAMES.forEach((n,l)=>{const b=el('button','lv');const d=el('div');d.append(el('b','',n.slice(2)),el('div','mu',(l?Q.filter(q=>q[0]==l).length+' প্রশ্ন':'১২টি র‍্যান্ডম')+' · সেরা: '+ls('cq'+l)));b.append(el('em','',n.slice(0,2)),d);b.onclick=()=>start(l);$('lvs').append(b)});
+ PS.forEach((p,i)=>{const b=el('button','lv');const d=el('div');d.append(el('b','',p.t.slice(3)),el('div','mu',p.a.length+'টি blank · বাংলা অনুবাদসহ · সেরা: '+ls('cp'+i)+'/'+p.a.length));b.append(el('em','',p.t.slice(0,2)),d);b.onclick=()=>passage(i);$('pss').append(b)});
+}
+function start(l,pool){
+ pool=pool||(l?sh(Q.filter(q=>q[0]==l)):sh(Q.slice()).slice(0,12));
+ S={l,pool,i:0,score:0,lives:3,streak:0,ok:0,weak:[],miss:[],t:20};screen('game');show();
+}
+function hud(){$('h1').textContent='⭐ '+S.score+'  🔥 '+S.streak;$('h2').textContent='❤️'.repeat(S.lives)+'🖤'.repeat(3-S.lives)}
+function show(){
+ const q=S.pool[S.i];S.lock=false;S.t=20;S.hint=false;hud();
+ $('qn').textContent='প্রশ্ন '+(S.i+1)+' / '+S.pool.length;$('qt').textContent=q[2];
+ $('fb').classList.add('hide');$('nx').classList.add('hide');$('hint').classList.remove('hide');$('hint').textContent='💡 Hint (−3 পয়েন্ট)';
+ const o=$('ops');o.innerHTML='';
+ sh([q[3],...q[4]]).forEach((t,i)=>{const b=el('button','opt');b.append(el('b','','ABCD'[i]),el('span','',t));b.onclick=()=>pick(t,b);o.append(b)});
+ clearInterval(timer);timer=setInterval(()=>{S.t-=0.1;$('tb').style.width=Math.max(S.t/20*100,0)+'%';$('tb').style.background=S.t<6?'var(--no)':'var(--ac)';if(S.t<=0)pick(null)},100);
+}
+$('hint').onclick=()=>{if(S.lock||S.hint)return;S.hint=true;S.score=Math.max(0,S.score-3);hud();$('hint').textContent='💡 Rule: '+S.pool[S.i][1]};
+function pick(t,btn){
+ if(S.lock)return;S.lock=true;clearInterval(timer);$('hint').classList.add('hide');
+ const q=S.pool[S.i],right=t===q[3];
+ [...$('ops').children].forEach(b=>{b.disabled=true;const s=b.lastChild.textContent;if(s===q[3])b.classList.add('ok');else if(b===btn)b.classList.add('no')});
+ const f=$('fb');f.innerHTML='';f.className='fb '+(right?'ok':'no');
+ if(right){S.streak++;S.ok++;const g=10+Math.min(S.streak-1,5)*2+Math.ceil(S.t/4);S.score+=g;f.append(el('div','','✅ সঠিক! +'+g+' পয়েন্ট'))}
+ else{S.streak=0;S.lives--;S.weak.push(q[1]);S.miss.push(q);f.append(el('div','',(t===null?'⏰ সময় শেষ! ':'❌ ভুল। ')+'সঠিক উত্তর: '+q[3]))}
+ f.append(el('div','',(q[2].includes('___')?'👉 '+q[2].replace('___',q[3]):'')),el('div','',q[5]));
+ const b=el('div','bn','🇧🇩 বাংলা অর্থ: '+q[6]);b.style.fontWeight='600';f.append(b);
+ hud();f.classList.remove('hide');const n=$('nx');n.classList.remove('hide');n.textContent=(S.lives==0||S.i+1>=S.pool.length)?'ফলাফল দেখো →':'পরের প্রশ্ন →';
+}
+$('nx').onclick=()=>{if(S.lives==0||S.i+1>=S.pool.length)return fin();S.i++;show()};
+function endCard(title,stars,line,weak,again,retry){
+ screen('end');const e=$('end');e.innerHTML='';const c=el('div','card');
+ c.append(el('h2','',title),el('div','st','★'.repeat(stars)+'☆'.repeat(3-stars)),el('p','',line));
+ if(weak.length){c.append(el('div','mu','আরও অনুশীলন দরকার:'));const w=el('div');weak.forEach(x=>w.append(el('span','tag',x)));c.append(w)}else c.append(el('p','','কোনো ভুল নেই — দারুণ! 👏'));
+ if(retry){const r=el('button','go','🔁 ভুলগুলো আবার করো');r.onclick=retry;c.append(r)}
+ const a=el('button','go','আবার খেলো');a.onclick=again;const h=el('button','go sec','🏠 হোম');h.onclick=home;c.append(a,h);e.append(c);
+}
+function fin(){
+ const n=S.pool.length,pct=S.ok/n,stars=S.lives==0?0:pct>=.9?3:pct>=.7?2:1,prev=ls('cq'+S.l);
+ if(S.score>prev)ls('cq'+S.l,S.score);addXP(S.score);const L=S.l,M=S.miss.slice();
+ endCard(S.lives==0?'💔 Game Over':'🏆 Quest Complete!',stars,'সঠিক '+S.ok+' / '+n+' · স্কোর '+S.score+' (+'+S.score+' XP)'+(S.score>prev?' · 🎉 নতুন রেকর্ড!':''),[...new Set(S.weak)],()=>start(L),M.length?()=>start(L,sh(M)):null);
+}
+function passage(i){
+ screen('pass');const p=PS[i],box=$('pass');box.innerHTML='';const c=el('div','card');
+ c.append(el('h2','',p.t),el('div','mu','প্রতিটি blank-এ সঠিক connector বেছে নাও।'));
+ const ps=el('p','ps'),sels=[];
+ p.x.split(/\{(\d)\}/).forEach((s,k)=>{if(k%2==0)ps.append(s);else{const sel=el('select');sel.append(new Option('—',''));WB.forEach(w=>sel.append(new Option(w,w)));sels.push(sel);ps.append(sel)}});
+ c.append(ps);const chk=el('button','go','✔ Check Answers'),out=el('div'),back=el('button','go sec','🏠 হোম');back.onclick=home;
+ chk.onclick=()=>{let ok=0;sels.forEach((s,k)=>{const r=p.a[k].includes(s.value);s.className=r?'ok':'no';s.disabled=true;if(r)ok++});
+  const xp=ok*15;addXP(xp);if(ok>ls('cp'+i))ls('cp'+i,ok);chk.remove();out.innerHTML='';
+  out.append(el('div','st','★'.repeat(ok==sels.length?3:ok>=sels.length-1?2:ok?1:0)),el('p','','সঠিক '+ok+' / '+sels.length+' · +'+xp+' XP'));
+  out.append(el('h3','','🇧🇩 বাংলা অর্থ'),el('div','bn',p.bn),el('h3','','ব্যাখ্যা'));
+  p.ex.forEach((x,k)=>{const d=el('div','','('+(k+1)+') '+x+(p.a[k].includes(sels[k].value)?' ✅':' ❌ (সঠিক: '+p.a[k][0]+')'));out.append(d)});
+  const ag=el('button','go','🔁 আবার চেষ্টা করো');ag.onclick=()=>passage(i);out.append(ag)};
+ c.append(chk,out,back);box.append(c);
+}
+home();
+</script></body></html>
